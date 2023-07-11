@@ -5,6 +5,43 @@
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<style>
 		.center {display: block; margin-left: auto; margin-right: auto; width: 100%;}
+		
+		body {font-family: Arial;}
+
+		/* Style the tab */
+		.tab {
+		  overflow: hidden;
+		  border: 1px solid #ccc;
+		  background-color: #141414;
+		}
+
+		/* Style the buttons inside the tab */
+		.tab button {
+		  background-color: inherit;
+		  float: left;
+		  border: none;
+		  outline: none;
+		  cursor: pointer;
+		  padding: 14px 16px;
+		  transition: 0.3s;
+		  font-size: 17px;
+		}
+
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class */
+		.tab button.active {
+		  background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+		  display: none;
+		  padding: 6px 12px;
+		}
 	</style>
 </head>
 <body style= "background-color:#141414;">
@@ -13,11 +50,50 @@
 	<br>
 	
 	<img src="LotW1 Banner.png" class="center">
-	<p style="font-family:Cambria; font-size:100px; color:#FF0000; text-align:left; margin-bottom:0px">TRAILER</p>
-	<video width="640" height="480" style="margin-top:0px" controls>
-	<source src="Lands of the Wanted Trailer.mp4" type="video/mp4">
-	Your browser does not support the video tag.
-	</video>
+	<div class="tab">
+	  <button class="tablinks" onclick="openCity(event, 'Trailer')" style="color:white; font-family:Helvetica; font-size:50px"><b>TRAILER</b></button>
+	  <button class="tablinks" onclick="openCity(event, 'Synopsis')" style="color:white; font-family:Helvetica; font-size:50px"><b>SYNOPSIS</b></button>
+	  <button class="tablinks" onclick="openCity(event, 'Cast')" style="color:white; font-family:Helvetica; font-size:50px"><b>CAST</b></button>
+	</div>
 
+	<div id="Trailer" class="tabcontent">
+		<video width="640" height="480" style="margin-top:0px; float:left" z-index="-1" controls> <source src="Lands of the Wanted Trailer.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
+	</div>
+
+	<div id="Synopsis" class="tabcontent">
+	  <p style="color:white; font-family:Helvetica; font-size:50px">A outlaw gets robbed by a gang, the main character Michael must find out where his money is and face the consequences that come from trying to find it.</p>
+	</div>
+
+	<div id="Cast" class="tabcontent">
+	  <p style="color:white; font-family:Helvetica; font-size:50px">
+Jospeh Robinson - Director <br>
+Joseph Robinson - Writer <br>
+Joseph Robinson - Producer <br>
+Joseph Robinson - Key Cast "Michael Smith" <br>
+Joseph Robinson - Key Cast "Harry" <br>
+Joseph Robinson - Key Cast "Unnamed Lawman" <br>
+Joseph Robinson - Key Cast "John O'Neil (Mr. O'Neil)" <br>
+Brian - Camera Man
+</p>
+	</div>
+	<video width="100%" height="width/2" style="margin-top:50px; float:left" z-index="-1" controls> <source src="Lands of the Wanted Full Film.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
+	
 </body>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
 </html>
