@@ -42,6 +42,21 @@
 		  display: none;
 		  padding: 6px 12px;
 		}
+		
+		.youtube-embed {
+		  position: relative;
+		  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+		  height: 0;
+		  overflow: hidden;
+		}
+
+		.youtube-embed iframe {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		}
 	</style>
 </head>
 <body style= "background-color:#141414;">
@@ -57,7 +72,7 @@
 	</div>
 
 	<div id="Trailer" class="tabcontent">
-		<iframe width="640" height="480" src="https://youtube.com/embed/r5ATPlEysC8"> </iframe>
+		<iframe width="640" height="480" src="https://youtube.com/embed/r5ATPlEysC8" frameborder="0" allowfullscreen> </iframe>
 	</div>
 
 	<div id="Synopsis" class="tabcontent">
@@ -76,7 +91,10 @@ Joseph Robinson - Key Cast "John O'Neil (Mr. O'Neil)" <br>
 Brian - Camera Man
 </p>
 	</div>
-	<iframe width="100%" height="width/2" style="margin-top:50px; float:left" z-index="-1" src="https://youtube.com/embed/MMKl39qdEvk"> </iframe>
+	<div class="youtube-embed">
+	  <iframe id="youtube-video" style="margin-top:50px"
+ width="100%" height="0" src="https://www.youtube.com/embed/MMKl39qdEvk" frameborder="0" allowfullscreen></iframe>
+	</div>
 	
 </body>
 
@@ -94,6 +112,22 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+function resizeYouTubeEmbed() {
+  var embedContainer = document.querySelector('.youtube-embed');
+  var embedWidth = embedContainer.offsetWidth;
+  var embedHeight = embedWidth * 0.5625; /* 16:9 aspect ratio */
+
+  var embedIframe = document.getElementById('youtube-video');
+  embedIframe.style.height = embedHeight + 'px';
+}
+
+// Call the resize function when the window is resized
+window.addEventListener('resize', resizeYouTubeEmbed);
+
+// Call the resize function initially
+resizeYouTubeEmbed();
+
 </script>
 
 </html>
